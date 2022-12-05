@@ -14,8 +14,8 @@
 
 ## how to use with chatgpt
 
-- clone, configure and run git@github.com:tluyben/chatgpt-playground.git as described (including the chatgpt-api)
-- clone, configure and run git@github.com:tluyben/nodejs-proxy.git
+- clone, configure and run https://github.com/tluyben/chatgpt-playground as described (including the chatgpt-api)
+- clone, configure and run https://github.com/tluyben/nodejs-proxy
 - run the the current sqlite server as described above 
 
 - go to http://localhost:3000/ 
