@@ -65,12 +65,12 @@ app.get('/api/sqlite/query', async (req, res) => {
         const query = req.query.q;
 
         // Execute the query
-        const rows = await db.all(query);
-
+        let rows = await db.all(query);
+	if (!rows) rows = []
         // Close the database connection
         await db.close();
-
-        // Return the result of the query as JSON
+        
+	// Return the result of the query as JSON
         res.json(rows);
     } catch (err) {
         // Return an error if something went wrong
