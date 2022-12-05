@@ -4,7 +4,7 @@ const port = 3003;
 const sqlite = require('sqlite');
 const sqlite3 = require('sqlite3');
 
-const dbFile = 'chinook.db';
+const dbFile = 'northwind.db';
 
 async function getTables(res, req) {
     try {
