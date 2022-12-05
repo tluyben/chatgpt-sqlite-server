@@ -5,7 +5,8 @@ const sqlite = require('sqlite');
 const sqlite3 = require('sqlite3');
 
 const dbFile = 'chinook.db';
-app.get('/api/sqlite/tables', async (req, res) => {
+
+async function getTables(res, req) {
     try {
         // Open a connection to the SQLite database
         const db = await sqlite.open({ filename: dbFile, driver: sqlite3.Database });
@@ -37,17 +38,28 @@ app.get('/api/sqlite/tables', async (req, res) => {
         await db.close();
 
         // Return the tables object as JSON
-        res.json(tables);
+        res.json({ prompt: 'I have the following database model:', data: tables });
     } catch (err) {
         // Return an error if something went wrong
         res.status(500).json({ error: err.message });
     }
+}
+// the init function before doing anything 
+app.get('/api/sqlite/init', async (req, res) => {
+    await getTables(res, req);
 });
-
+app.get('/api/sqlite/tables', async (req, res) => {
+    await getTables(res, req);
+});
 app.get('/api/sqlite/query', async (req, res) => {
     try {
         // Open a connection to the SQLite database
         const db = await sqlite.open({ filename: dbFile, driver: sqlite3.Database });
+
+        if (!req.query.q) {
+            res.status(400).json({ type: 'code', var: 'q', prompt: 'please provide sql for the following' });
+            return;
+        }
 
         // Get the query from the URL query string
         const query = req.query.q;
