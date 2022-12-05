@@ -12,6 +12,20 @@
 - curl http://localhost:3003/api/sqlite/tables
 - curl "http://localhost:3003/api/sqlite/query?q=select+Title+from+albums"
 
+## how to use with chatgpt
+
+- clone, configure and run git@github.com:tluyben/chatgpt-playground.git as described (including the chatgpt-api)
+- clone, configure and run git@github.com:tluyben/nodejs-proxy.git
+- run the the current sqlite server as described above 
+
+- go to http://localhost:3000/ 
+- prime the AI with /sqlite tables 
+- now the Northwind database is known to chatgpt
+- run queries like  
+   - /sqlite query give me some customers
+   - /sqlite query what are some territories
+   - /sqlite query give me the customers belonging to terrority [ID] 
+
 # License 
 
 MIT 
